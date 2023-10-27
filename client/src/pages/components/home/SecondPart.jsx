@@ -2,7 +2,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import PhotoTravel from "./../../../images/photoTravel.png"
 import PhotoTravel2 from "./../../../images/photoTravel_02.png"
-import Eco from "./../../../images/Eco.png"
+import Eco from "./../../../images/eco.png"
 import PublicTrasport from "./../../../images/publicTrasport.png"
 import LocalTraditions from "./../../../images/localTraditions.png"
 import Icon from "./Icon";
