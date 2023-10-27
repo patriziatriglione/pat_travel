@@ -1,0 +1,73 @@
+.darkTheme {
+  background-color: #1a1a1a !important;
+  color: #E8E1D9 !important;
+}
+
+.back_opacity {
+  background-color: #0000003a !important;
+  color: #E8E1D9 !important;
+}
+
+.darkTheme label {
+  color: #E8E1D9 !important;
+}
+
+.darkTheme input {
+  color: #E8E1D9 !important;
+}
+
+.darkTheme a {
+  color: #ECC248 !important;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  color: #755B00 !important;
+}
+
+.back_primary {
+  background-color: #755B00 !important;
+  color: #E8E1D9 !important;
+}
+
+.back_primary_dark {
+  background-color: #ECC248 !important;
+  color: #1a1a1a !important;
+}
+
+.text {
+  font-size: x-large;
+}
+
+.tertiary {
+  background-color: #006397 !important;
+  color: #CCE5FF !important;
+}
+
+.tertiary_dark {
+  background-color: #92CCFF !important;
+  color: #003351 !important;
+}
+
+.on_tertiary {
+  color: #001D31 !important;
+}
+
+.on_tertiary_dark {
+  color: #92CCFF !important;
+}
+
+.td_dark {
+  color: #E8E1D9 !important;
+}
+
+.selected {
+  background-color: #9e9e9e !important;
+}
