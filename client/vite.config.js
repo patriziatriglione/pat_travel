@@ -13,7 +13,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    include: ['react-redux'], 
+    include: ['react-redux']
   },
 });
 
