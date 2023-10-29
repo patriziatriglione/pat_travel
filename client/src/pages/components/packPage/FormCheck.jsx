@@ -62,7 +62,7 @@ function FromCheck({ price, city, packNumber, animals, rental, adultsNumber, chi
         children: children,
       };
       // sending data for the order
-      axios.post('/api/order', orderData)
+      axios.post('https://pat-travel-api.vercel.app/api/order', orderData)
         .then(() => {
           navigate("/reserve", {
             state: { orderData },
