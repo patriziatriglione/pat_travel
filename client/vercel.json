@@ -1,5 +1,7 @@
 {
-    "rewrites":  [
+    "rewrites": [
+      {"source": "/api/(.*)", "destination": "https://pat-travel-api.vercel.app/$1"},
       {"source": "/(.*)", "destination": "/"}
     ]
   }
+  
