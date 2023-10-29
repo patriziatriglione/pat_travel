@@ -31,13 +31,13 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+        <Route path="/login" element={<Login />} />
           <Route path="/" element={
             <Container fluid className={currentTheme ? "darkTheme" : ""}>
               <Layout />
             </Container>
           }
           >
-            <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
             <Route path="/greenPack" element={<GreenPack />} />
             <Route path="/greenPack/:id" element={<PackPage />} />

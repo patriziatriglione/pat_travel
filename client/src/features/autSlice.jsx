@@ -11,7 +11,7 @@ const initialState = {
 export const fetchAuth = createAsyncThunk("auth/fetcAuth", async (credentials) => {
   try {
     //call api for login
-    const res = await axios.post(`/api/auth/login`, credentials);
+    const res = await axios.post(`https://pat-travel-api.vercel.app/api/auth/login`, credentials);
     const user = res.data;
     localStorage.setItem('user', JSON.stringify(user));
     return user;

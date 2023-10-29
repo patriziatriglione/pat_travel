@@ -69,7 +69,7 @@ function NewStructure() {
       packageId: newStructure.packageId,
     };
     setShow(true)
-    axios.post(`/api/structure/${newStructure.packageId}`, newHotelData)
+    axios.post(`https://pat-travel-api.vercel.app/api/structure/${newStructure.packageId}`, newHotelData)
       .then((response) => {
         console.log('Structure successfully added:', response.data);
       })

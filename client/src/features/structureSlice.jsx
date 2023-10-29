@@ -11,7 +11,7 @@ const initialState = {
 // call api for individual structures
 export const fetchStructure = createAsyncThunk("structure/fetchStructure", async (structureId) => {
   try {
-    const res = await axios.get(`/api/structure/${structureId}`);
+    const res = await axios.get(`https://pat-travel-api.vercel.app/api/structure/${structureId}`);
     return res.data;
   } catch (error) {
     console.log(error)
