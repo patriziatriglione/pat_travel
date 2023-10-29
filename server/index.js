@@ -9,11 +9,19 @@ const activityRoutes = require("./routes/activity");
 const foodRoutes = require("./routes/food");
 const orderRoutes = require("./routes/order")
 const cookieParser = require("cookie-parser");
+const cors = require("cors")
 
 // function for dotenv
 dotenv.config();
 // function for express
 const app = express();
+app.use(cors(
+    {
+        origin:["https://pat-travel.vercel.app"],
+        methods:["POST", "GET", "DELETE", "PATCH"],
+        credentials: true
+    }
+))
 app.use(express.urlencoded({ extended: true }));
 //cookie
 app.use(cookieParser())
