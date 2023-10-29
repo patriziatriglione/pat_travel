@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://pat-travel-api.vercel.app',
+        target: 'https://pat-travel-api.vercel.app',
         changeOrigin: true,
       },
     },
