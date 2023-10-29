@@ -27,7 +27,8 @@ function NewFood() {
     });
   }
   // add new local food
-  const addFood = () => {
+  const addFood = (e) => {
+    e.preventDefault();
     const newFoodData = {
       title: newFood.title,
       city: newFood.city,
