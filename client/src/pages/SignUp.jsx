@@ -39,7 +39,8 @@ function SignUp() {
     });
   }
   // function new account
-  const addAccount = () => {
+  const addAccount = (e) => {
+    e.preventDefault();
     const newAccountData = {
       firstName: newAccount.firstName,
       lastName: newAccount.lastName,
