@@ -17,27 +17,9 @@ dotenv.config();
 // function for express
 const app = express();
 
-res.header("Access-Control-Allow-Origin", "https://pat-travel.vercel.app");
-res.header('Access-Control-Allow-Credentials', true);
-res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-app.use(session({
-key: 'express.sessionID',
-name: 'unique',
-secret: process.env.SESSION_SECRET,
-store: sessionStore,
-resave: false,
-saveUninitialized: false,
-cookie: {
-maxAge: 1000 * 60 * 60 * 48,
-httpOnly: true,
-secure: true,
-sameSite: "none",
-}
-}))
 app.use(cors(
     {
         origin:["https://pat-travel.vercel.app"],
-        allowedHeaders: ['Content-Type', 'Authorization'],
         methods:["POST", "GET", "DELETE", "PATCH"],
         credentials: true
     }
