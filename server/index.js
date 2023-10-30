@@ -20,6 +20,7 @@ const app = express();
 app.use(cors(
     {
         origin:["https://pat-travel.vercel.app"],
+        path:"/",
         methods:["POST", "GET", "DELETE", "PATCH"],
         credentials: true
     }
