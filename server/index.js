@@ -26,11 +26,6 @@ app.use(cors(
 app.use(express.urlencoded({ extended: true }));
 //cookie
 app.use(cookieParser())
-app.get("/imposta-cookie", (req, res) => {
-    // Imposta un cookie con l'attributo Secure
-    res.cookie("nome_cookie", "valore_cookie", { secure: true, httpOnly: true, maxAge: 3600000 }); // Imposta secure su true
-    res.send("Cookie impostato correttamente su connessioni HTTPS.");
-  });
 // to use json method
 app.use(express.json());
 //PORT
