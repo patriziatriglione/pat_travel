@@ -10,7 +10,7 @@ const foodRoutes = require("./routes/food");
 const orderRoutes = require("./routes/order")
 const cookieParser = require("cookie-parser");
 const cors = require("cors")
-const axios = require('axios');
+
 
 // function for dotenv
 dotenv.config();
@@ -23,7 +23,6 @@ app.use(cors(
         credentials: true
     }
 ))
-axios.defaults.withCredentials = true;
 app.use(express.urlencoded({ extended: true }));
 //cookie
 app.use(cookieParser())
