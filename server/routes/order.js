@@ -12,7 +12,7 @@ const { verifyUser } = require("../utilis/verifyToken");
 const router = express.Router();
 router.get("/", verifyUser, getAllOrder);
 router.get("/:id", verifyUser, getOrderById);
-router.post("/", verifyUser, insertOrder);
+router.post("/", insertOrder);
 router.delete("/:id", verifyUser, deleteOrder);
 router.patch("/:id", verifyUser, updateOrder);
 
