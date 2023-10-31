@@ -34,6 +34,7 @@ function Food() {
         item.nation.toLowerCase().includes(query.toLowerCase())
       );
       setFilteredNews(filteredData);
+      console.log(filteredData);
     }
     setCurrentPage(1);
   };
