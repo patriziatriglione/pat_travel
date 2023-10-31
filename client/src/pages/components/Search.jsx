@@ -17,6 +17,7 @@ function SearchCityNation({ onSearch }) {
         className={`mt-5 ${currentTheme ? "back_opacity" : "bg-white"}`}
         aria-label="Search"
         onChange={handleSearchChange}
+        name="search"
       />
     </Form>
   );
