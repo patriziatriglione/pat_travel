@@ -17,6 +17,7 @@ dotenv.config();
 // function for express
 const app = express();
 
+
 app.use(cors(
     {
         origin:["https://pat-travel.vercel.app"],
