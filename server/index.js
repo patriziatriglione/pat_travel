@@ -11,25 +11,22 @@ const orderRoutes = require("./routes/order")
 const cookieParser = require("cookie-parser");
 const cors = require("cors")
 
-
 // function for dotenv
 dotenv.config();
 // function for express
 const app = express();
 app.options("/*", (req, res) => {
-    res.header('Access-Control-Allow-Origin', 'https://pat-travel.vercel.app'); // Imposta l'origine specifica del tuo sito web
+    res.header('Access-Control-Allow-Origin', 'https://pat-travel.vercel.app');
     res.header('Access-Control-Allow-Credentials', true);
     res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PATCH");
     res.header('Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
     res.status(204).end();
 });
-
-
 app.use(cors(
     {
-        origin:["https://pat-travel.vercel.app"],
-        methods:["POST", "GET", "DELETE", "PATCH"],
+        origin: ["https://pat-travel.vercel.app"],
+        methods: ["POST", "GET", "DELETE", "PATCH"],
         credentials: true
     }
 ))

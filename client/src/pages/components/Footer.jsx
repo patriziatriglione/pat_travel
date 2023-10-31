@@ -1,7 +1,7 @@
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { AiFillGithub, AiFillLinkedin, AiFillInstagram, AiFillFacebook } from "react-icons/ai";
-import { BiLogoNetlify } from "react-icons/bi";
+import { GoProjectSymlink } from "react-icons/go";
 import { GiTigerHead } from "react-icons/gi";
 
 function Footer() {
@@ -18,21 +18,21 @@ function Footer() {
                 </Col>
                 <Col>
                     <h5>Pages</h5>
-                    <p><a href='!#'>Green packages</a></p>
-                    <p><a href='!#'>Traditional food</a></p>
-                    <p><a href='!#'>Activities</a></p>
+                    <p><a href='/greenPack'>Green packages</a></p>
+                    <p><a href='/food'>Local Food</a></p>
+                    <p><a href='/activity'>Activities</a></p>
                 </Col>
                 <Col>
                     <h5>My Projects</h5>
-                    <p><a href='!#'><GiTigerHead size={25} /></a> Portfolio</p>
-                    <p><a href='!#'><AiFillGithub size={25} /></a> Github</p>
-                    <p><a href='!#'><BiLogoNetlify size={25} /></a> Netlify</p>
+                    <p><a href='https://patriziatriglione.github.io/patriziatriglione/index.html'><GiTigerHead size={25} /></a> Portfolio</p>
+                    <p><a href='https://github.com/patriziatriglione'><AiFillGithub size={25} /></a> Github</p>
+                    <p><a href='https://patriziatriglione.github.io/patriziatriglione/websites.html'><GoProjectSymlink size={25} /></a>Projects</p>
                 </Col>
                 <Col>
                     <h5>Social</h5>
-                    <p><a href='!#'><AiFillLinkedin size={25} /></a> LinkedIn</p>
-                    <p><a href='!#'><AiFillInstagram size={25} /></a> Instagram</p>
-                    <p><a href='!#'><AiFillFacebook size={25} /></a> Facebook</p>
+                    <p><a href='https://www.linkedin.com/in/patriziatriglione/'><AiFillLinkedin size={25} /></a> LinkedIn</p>
+                    <p><a href='https://www.instagram.com/patrizia_triglione_/'><AiFillInstagram size={25} /></a> Instagram</p>
+                    <p><a href='https://www.facebook.com/patrizia.triglione'><AiFillFacebook size={25} /></a> Facebook</p>
                 </Col>
             </Row>
             <Row>

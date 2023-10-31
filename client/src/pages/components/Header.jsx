@@ -28,7 +28,7 @@ function Header() {
     <>
       <Navbar fixed='top' expand="xl" className={` ${currentTheme ? "darkTheme " : "bg-body-tertiary"}`}>
         <Container fluid>
-          <Navbar.Brand href="#">
+          <Navbar.Brand href="/">
             <img src={currentTheme ? LogoDark2 : Logo2} alt="logo" width={60} />
           </Navbar.Brand>
           <button

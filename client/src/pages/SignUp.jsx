@@ -63,7 +63,7 @@ function SignUp() {
       password: ""
     });
     // call api for registration
-    axios.post(`https://pat-travel-api.vercel.app/api/auth/register`, newAccountData)
+    axios.post(`https://pat-travel-api.vercel.app/api/auth/register`, newAccountData, { withCredentials: true })
       .then((response) => {
         console.log('Account added successfully:', response.data);
       })

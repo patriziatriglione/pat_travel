@@ -34,7 +34,7 @@ function Settings() {
   // edit user data
   const patchData = (e) => {
     e.preventDefault();
-    axios.patch(`https://pat-travel-api.vercel.app/api/user/${auth.user._id}`, userData)
+    axios.patch(`https://pat-travel-api.vercel.app/api/user/${auth.user._id}`, userData, { withCredentials: true })
       .then((response) => {
         setUserData(response.data);
         setShow(true);

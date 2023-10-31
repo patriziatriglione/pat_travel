@@ -7,7 +7,7 @@ function Delete() {
   const auth = useSelector((state) => state.auth)
   // account deletion
   const deleteData = () => {
-    axios.delete(`https://pat-travel-api.vercel.app/api/user/${auth.user._id}`)
+    axios.delete(`https://pat-travel-api.vercel.app/api/user/${auth.user._id}`, { withCredentials: true })
       .then(() => {
         window.location.href = '/login';
       })

@@ -39,7 +39,7 @@ function NewActivity() {
       hours: newActivity.hours
     };
     setShow(true)
-    axios.post(`https://pat-travel-api.vercel.app/api/activity`, newActivityData)
+    axios.post(`https://pat-travel-api.vercel.app/api/activity`, newActivityData, { withCredentials: true })
       .then((response) => {
         console.log('Activity added successfully:', response.data);
       })

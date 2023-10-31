@@ -5,7 +5,7 @@ import Button from "react-bootstrap/esm/Button";
 function Delete({ section, _id, onDelete }) {
     // account deletion
     const deleteData = () => {
-        axios.delete(`https://pat-travel-api.vercel.app/api/${section}/${_id}`)
+        axios.delete(`https://pat-travel-api.vercel.app/api/${section}/${_id}`, { withCredentials: true })
             .then(() => {
                 console.log("deletion successful")
                 if (onDelete) {

@@ -11,7 +11,7 @@ const initialState = {
 // call api for individual packages
 export const fetchPack = createAsyncThunk("pack/fetchPack", async (_id) => {
   try {
-    const res = await axios.get(`https://pat-travel-api.vercel.app/api/package/${_id}`);
+    const res = await axios.get(`https://pat-travel-api.vercel.app/api/package/${_id}`,{ withCredentials: true });
     return res.data;
   } catch (error) {
     console.log(error)

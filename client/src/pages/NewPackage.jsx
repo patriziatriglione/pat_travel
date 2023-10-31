@@ -77,7 +77,7 @@ function NewPackage() {
       toInclude: toIncludeData,
     };
     setShow(true)
-    axios.post("https://pat-travel-api.vercel.app/api/package", newPackageData)
+    axios.post("https://pat-travel-api.vercel.app/api/package", newPackageData, { withCredentials: true })
       .then((response) => {
         console.log('Package added successfully:', response.data);
       })

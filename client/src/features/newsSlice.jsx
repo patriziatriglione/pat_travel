@@ -11,7 +11,7 @@ const initialState = {
 // call api to call the various sections and filter by city/country
 export const fetchNews = createAsyncThunk("news/fetchNews", async (section, query) => {
   try {
-    const res = await axios.get(`https://pat-travel-api.vercel.app/api/${section}?search=${query}`);
+    const res = await axios.get(`https://pat-travel-api.vercel.app/api/${section}?search=${query}`, { withCredentials: true });
     return res.data;
   } catch (error) {
     console.log(error)
