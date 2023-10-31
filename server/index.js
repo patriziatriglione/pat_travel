@@ -16,6 +16,11 @@ const cors = require("cors")
 dotenv.config();
 // function for express
 const app = express();
+app.options("/*", (req, res) => {
+    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PATCH");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.status(204).end();
+});
 
 app.use(cors(
     {
