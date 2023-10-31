@@ -14,22 +14,21 @@ function List({ news, section }) {
   };
   return (
     <Row>
-      {filteredNews.map((newsItem, index) => (
-        <>
-          <Card2
-            key={index}
-            text={newsItem.text}
-            price={newsItem.price}
-            hours={newsItem.hours}
-            title={`${newsItem.title} - ${newsItem.city} - ${newsItem.nation} `}
-            image={newsItem.image}
-          />
+    {filteredNews.map((newsItem) => (
+  <div key={newsItem._id}>
+    <Card2
+      text={newsItem.text}
+      price={newsItem.price}
+      hours={newsItem.hours}
+      title={`${newsItem.title} - ${newsItem.city} - ${newsItem.nation} `}
+      image={newsItem.image}
+    />
           <Row className="flex justify-content-center mb-5">
             <Col lg={2}>
               <Delete section={section} _id={newsItem._id} onDelete={handleDelete} />
             </Col>
           </Row>
-        </>
+          </div>
       ))}
     </Row>
   );
