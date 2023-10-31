@@ -37,7 +37,7 @@ function NewFood() {
       text: newFood.text,
     };
     setShow(true)
-    axios.post(`https://pat-travel-api.vercel.app/api/food`, newFoodData)
+    axios.post(`https://pat-travel-api.vercel.app/api/food`, newFoodData, { withCredentials: true })
       .then((response) => {
         console.log('Food added successfully:', response.data);
       })
