@@ -10,6 +10,7 @@ import Error from "./components/Error";
 import Col from "react-bootstrap/Col";
 import PaginationComponent from "./components/Pagination";
 import Message from './components/MessageSearch';
+import Button from "react-bootstrap/Button"
 
 function Food() {
   const [filteredNews, setFilteredNews] = useState([]);
@@ -75,12 +76,12 @@ function Food() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   <>
-                  <button onClick={handleSearch}>Cerca</button>  
+                  <Button onClick={handleSearch} className="my-3">Cerca</Button>  
                   <Message />
                   </>
                 </div>
               ) : (
-                <button onClick={activateSearchMode}>Cerca città/nazione</button>
+                <Button onClick={activateSearchMode} className="my-3">Cerca città/nazione</Button>
               
               )}
             </Col>
