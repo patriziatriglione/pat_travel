@@ -27,7 +27,7 @@ function Food() {
   // data with or without the filter
   const handleSearch = (query) => {
     if (query === "") {
-      setFilteredNews();
+      setFilteredNews(news.data);
     } else {
       const filteredData = news.data.filter((item) =>
         item.city.toLowerCase().includes(query.toLowerCase()) ||
@@ -41,7 +41,7 @@ function Food() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredNews.slice(indexOfFirstItem, indexOfLastItem);
-  console.log(currentItems)
+  console.log(indexOfFirstItem)
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
