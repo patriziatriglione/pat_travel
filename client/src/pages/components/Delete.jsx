@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from "react-bootstrap/esm/Button";
 
 function Delete({ section, _id, onDelete }) {
-    // account deletion
+    // delete
     const deleteData = () => {
         axios.delete(`https://pat-travel-api.vercel.app/api/${section}/${_id}`, { withCredentials: true })
             .then(() => {
