@@ -24,11 +24,14 @@ function Food() {
     dispatch(fetchNews(section));
   }, [dispatch, section]);
 
+  useEffect(() => {
+    setFilteredNews(news.data);
+  }, [news.data]);
 
   // Funzione per gestire la ricerca
   const handleSearch = () => {
     if (searchQuery === "") {
-      setFilteredNews([]);
+      setFilteredNews(news.data);
     } else {
       const filteredData = news.data.filter((item) =>
         item.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -81,7 +84,7 @@ function Food() {
             <h2>News</h2>
           </Row>
           <Row className="my-5">
-        {filteredNews.length === 0 && setSearchMode === false ? (
+        {filteredNews.length === 0  ? (
               <Error section={"food"} />
             ) : (
               <>
