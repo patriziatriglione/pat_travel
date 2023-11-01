@@ -23,12 +23,12 @@ function Food() {
   }, [dispatch, section]);
   useEffect(() => {
     setFilteredNews(news.data);
-    console.log(setFilteredNews)
   }, [news.data]);
   // data with or without the filter
   const handleSearch = (query) => {
     if (query === "") {
       setFilteredNews(news.data);
+      console.log(setFilteredNews)
     } else {
       const filteredData = news.data.filter((item) =>
         item.city.toLowerCase().includes(query.toLowerCase()) ||
