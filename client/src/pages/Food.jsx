@@ -16,21 +16,18 @@ function Food() {
   const [filteredNews, setFilteredNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
-  const [searchMode, setSearchMode] = useState(false); // Stato per gestire la modalità di ricerca
-  const [searchQuery, setSearchQuery] = useState(''); // Stato per la query di ricerca
+  const [searchMode, setSearchMode] = useState(false); 
+  const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const section = "food";
-
   useEffect(() => {
     dispatch(fetchNews(section));
   }, [dispatch, section]);
-
   useEffect(() => {
     setFilteredNews(news.data);
   }, [news.data]);
-
-  // Funzione per gestire la ricerca
+  // Search input
   const handleSearch = () => {
     if (searchQuery === "") {
       setFilteredNews(news.data);
@@ -40,22 +37,19 @@ function Food() {
         item.nation.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredNews(filteredData);
-      setSearchMode(false); // Nasconde la barra di ricerca
+      setSearchMode(false); 
     }
     setCurrentPage(1);
   };
-
-  // Funzione per attivare la modalità di ricerca
+  // Search button
   const activateSearchMode = () => {
     setSearchMode(true);
     setFilteredNews([]);
   };
-
-  // Funzione per gestire la paginazione
+  // Pagination
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
   return (
     <>
       <Row>
@@ -71,17 +65,17 @@ function Food() {
                 <div>
                   <input
                     type="text"
-                    placeholder="Cerca città/nazione"
+                    placeholder="Search City/nation"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   <>
-                  <Button onClick={handleSearch} className="my-3">Cerca</Button>  
+                  <Button onClick={handleSearch} >Search</Button>  
                   <Message />
                   </>
                 </div>
               ) : (
-                <Button onClick={activateSearchMode} className="my-3">Cerca città/nazione</Button>
+                <Button onClick={activateSearchMode} className="my-3">Search City/Nation</Button>
               
               )}
             </Col>

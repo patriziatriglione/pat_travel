@@ -6,14 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import List from "./components/List";
 import Loading from "./components/Loading";
 import Error from "./components/Error";
-import SearchCityNation from "./components/Search";
 import PaginationComponent from "./components/Pagination";
 import Col from "react-bootstrap/Col";
+import Message from './components/MessageSearch';
+import Button from "react-bootstrap/Button"
 
 function Activity() {
   const [filteredNews, setFilteredNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
+  const [searchMode, setSearchMode] = useState(false); 
+  const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const section = "activity";
@@ -25,23 +28,26 @@ function Activity() {
     setFilteredNews(news.data);
   }, [news.data]);
   // data with or without the filter
-  const handleSearch = (query) => {
-    if (query === "") {
+  const handleSearch = () => {
+    if (searchQuery === "") {
       setFilteredNews(news.data);
     } else {
       const filteredData = news.data.filter((item) =>
-        item.city.toLowerCase().includes(query.toLowerCase()) ||
-        item.nation.toLowerCase().includes(query.toLowerCase())
+        item.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.nation.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredNews(filteredData);
+      setSearchMode(false);
     }
     setCurrentPage(1);
   };
-  // items to display on the current page
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredNews.slice(indexOfFirstItem, indexOfLastItem);
-  const paginate = (pageNumber) => {
+  // Search button
+  const activateSearchMode = () => {
+    setSearchMode(true);
+    setFilteredNews([]);
+  };
+   // Pagination
+   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
   return (
@@ -55,18 +61,33 @@ function Activity() {
         <>
           <Row className="my-5 d-flex justify-content-center">
             <Col sm={3}>
-              <SearchCityNation section={section} onSearch={handleSearch} />
+              {searchMode ? (
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Search City/nation"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  <>
+                  <Button onClick={handleSearch} >Search</Button>  
+                  <Message />
+                  </>
+                </div>
+              ) : (
+                <Button onClick={activateSearchMode} className="my-3">Search City/Nation</Button>
+              )}
             </Col>
           </Row>
           <Row className="my-3">
             <h2>News</h2>
           </Row>
           <Row className="my-5">
-            {filteredNews.length === 0 ? (
+        {filteredNews.length === 0  ? (
               <Error section={"activity"} />
             ) : (
               <>
-                <List news={currentItems} section={section} />
+                <List news={filteredNews} section={section} />
                 <PaginationComponent
                   currentPage={currentPage}
                   itemsPerPage={itemsPerPage}
