@@ -16,7 +16,6 @@ function Food() {
   const [itemsPerPage] = useState(10);
   const [searchMode, setSearchMode] = useState(false); // Stato per gestire la modalità di ricerca
   const [searchQuery, setSearchQuery] = useState(''); // Stato per la query di ricerca
-  const [searchPlaceholder, setSearchPlaceholder] = useState('Cerca città/nazione'); // Stato per il placeholder della barra di ricerca
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const section = "food";
@@ -25,11 +24,14 @@ function Food() {
     dispatch(fetchNews(section));
   }, [dispatch, section]);
 
+  useEffect(() => {
+    setFilteredNews(news.data);
+  }, [news.data]);
+
   // Funzione per gestire la ricerca
   const handleSearch = () => {
     if (searchQuery === "") {
-      setFilteredNews([]);
-      setSearchPlaceholder('Cerca la tua città/nazione');
+      setFilteredNews([news.data]);
     } else {
       const filteredData = news.data.filter((item) =>
         item.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -37,7 +39,6 @@ function Food() {
       );
       setFilteredNews(filteredData);
       setSearchMode(false); // Nasconde la barra di ricerca
-      setSearchPlaceholder('Cerca città/nazione');
     }
     setCurrentPage(1);
   };
@@ -46,7 +47,6 @@ function Food() {
   const activateSearchMode = () => {
     setSearchMode(true);
     setFilteredNews([]);
-    setSearchPlaceholder('Cerca città/nazione');
   };
 
   // Funzione per gestire la paginazione
@@ -69,14 +69,14 @@ function Food() {
                 <div>
                   <input
                     type="text"
-                    placeholder={searchPlaceholder}
+                    placeholder="Cerca città/nazione"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   <button onClick={handleSearch}>Cerca</button>
                 </div>
               ) : (
-                <button onClick={activateSearchMode}>{searchPlaceholder}</button>
+                <button onClick={activateSearchMode}>Cerca città/nazione</button>
               )}
             </Col>
           </Row>
@@ -84,7 +84,7 @@ function Food() {
             <h2>News</h2>
           </Row>
           <Row className="my-5">
-            {filteredNews.length === 0 ? (
+        {filteredNews.length === 0 && setSearchMode(false) ? (
               <Error section={"food"} />
             ) : (
               <>
@@ -105,5 +105,4 @@ function Food() {
 }
 
 export default Food;
-
 
