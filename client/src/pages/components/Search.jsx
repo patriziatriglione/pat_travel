@@ -8,7 +8,7 @@ function SearchCityNation({ onSearch }) {
   // Aggiungi una funzione per gestire la pressione del tasto "Invio"
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      // Esegui la ricerca quando il tasto "Invio" viene premuto
+      e.preventDefault();
       onSearch(e.target.value);
     }
   };
