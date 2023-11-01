@@ -71,6 +71,7 @@ function Activity() {
                     placeholder="Search City/nation"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    className="mr-2"
                   />
                   <>
                   <Button onClick={handleSearch} >Search</Button>  

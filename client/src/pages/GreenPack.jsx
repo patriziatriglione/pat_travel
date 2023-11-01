@@ -6,13 +6,17 @@ import { useDispatch, useSelector } from "react-redux";
 import NewsList from "./components/ListNews";
 import Loading from "./components/Loading";
 import Error from "./components/Error";
-import SearchCityNation from "./components/Search";
 import PaginationComponent from "./components/Pagination";
+import Message from './components/MessageSearch';
+import Button from "react-bootstrap/Button"
+import Col from "react-bootstrap/Col"
 
 function GreenPack() {
   const [filteredNews, setFilteredNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
+  const [searchMode, setSearchMode] = useState(false); 
+  const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const section = "package";
@@ -23,18 +27,23 @@ function GreenPack() {
   useEffect(() => {
     setFilteredNews(news.data);
   }, [news.data]);
-  // data with or without the filter
-  const handleSearch = (query) => {
-    if (query === "") {
+  // Search input
+  const handleSearch = () => {
+    if (searchQuery === "") {
       setFilteredNews(news.data);
     } else {
       const filteredData = news.data.filter((item) =>
-        item.city.toLowerCase().includes(query.toLowerCase()) ||
-        item.nation.toLowerCase().includes(query.toLowerCase())
+        item.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.nation.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredNews(filteredData);
+      setSearchMode(false); 
     }
-    setCurrentPage(1);
+  };
+  // Search button
+  const activateSearchMode = () => {
+    setSearchMode(true);
+    setFilteredNews([]);
   };
   // items to display on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -52,18 +61,37 @@ function GreenPack() {
         <Loading />
       ) : (
         <>
-          <Row className="my-5 d-flex justify-content-center" sm={3}>
-            <SearchCityNation section={section} onSearch={handleSearch} />
+          <Row className="my-5 d-flex justify-content-center">
+            <Col sm={3}>
+              {searchMode ? (
+                <div className='my-5'>
+                  <input
+                    type="text"
+                    placeholder="Search City/nation"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className='mr-2'
+                  />
+                  <>
+                  <Button onClick={handleSearch} >Search</Button>  
+                  <Message />
+                  </>
+                </div>
+              ) : (
+                <Button onClick={activateSearchMode} className="my-5">Search City/Nation</Button>
+              
+              )}
+            </Col>
           </Row>
           <Row className="my-3">
             <h2>News</h2>
           </Row>
-          <Row>
-            {filteredNews.length === 0 ? (
-              <Error section={"package"} />
+          <Row className="my-5">
+        {filteredNews.length === 0  ? (
+              <Error section={"food"} />
             ) : (
               <>
-                <NewsList news={currentItems} section={section} />
+               <NewsList news={currentItems} section={section} />
                 <PaginationComponent
                   currentPage={currentPage}
                   itemsPerPage={itemsPerPage}

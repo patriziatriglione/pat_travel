@@ -6,6 +6,7 @@ import { fetchNews } from "../features/newsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import List from "./components/List";
 import Loading from "./components/Loading";
+import PaginationComponent from "./components/Pagination";
 import Error from "./components/Error";
 import Col from "react-bootstrap/Col";
 import Message from './components/MessageSearch';
@@ -13,6 +14,8 @@ import Button from "react-bootstrap/Button"
 
 function Food() {
   const [filteredNews, setFilteredNews] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
   const [searchMode, setSearchMode] = useState(false); 
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
@@ -43,6 +46,13 @@ function Food() {
     setSearchMode(true);
     setFilteredNews([]);
   };
+   // items to display on the current page
+   const indexOfLastItem = currentPage * itemsPerPage;
+   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+   const currentItems = filteredNews.slice(indexOfFirstItem, indexOfLastItem);
+   const paginate = (pageNumber) => {
+     setCurrentPage(pageNumber);
+   };
   return (
     <>
       <Row>
@@ -61,6 +71,7 @@ function Food() {
                     placeholder="Search City/nation"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    className='mr-2'
                   />
                   <>
                   <Button onClick={handleSearch} >Search</Button>  
@@ -81,7 +92,13 @@ function Food() {
               <Error section={"food"} />
             ) : (
               <>
-                <List news={filteredNews} section={section} />
+               <List news={currentItems} section={section} />
+                <PaginationComponent
+                  currentPage={currentPage}
+                  itemsPerPage={itemsPerPage}
+                  totalItems={filteredNews.length}
+                  onPageChange={paginate}
+                />
               </>
             )}
           </Row>
