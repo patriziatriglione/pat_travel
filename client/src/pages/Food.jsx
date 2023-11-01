@@ -27,7 +27,7 @@ function Food() {
   // data with or without the filter
   const handleSearch = (query) => {
     if (query === "") {
-      setFilteredNews(news.data);
+      setFilteredNews();
     } else {
       const filteredData = news.data.filter((item) =>
         item.city.toLowerCase().includes(query.toLowerCase()) ||
