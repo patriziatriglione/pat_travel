@@ -14,7 +14,7 @@ import Button from "react-bootstrap/Button"
 function Activity() {
   const [filteredNews, setFilteredNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
+  const [itemsPerPage] = useState(15);
   const [searchMode, setSearchMode] = useState(false); 
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();

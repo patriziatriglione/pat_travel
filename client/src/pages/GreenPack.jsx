@@ -14,12 +14,14 @@ import Col from "react-bootstrap/Col"
 function GreenPack() {
   const [filteredNews, setFilteredNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
+  const [itemsPerPage] = useState(15);
   const [searchMode, setSearchMode] = useState(false); 
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const section = "package";
+    // theme
+    const currentTheme = useSelector((state) => state.theme);
   //call the data based on section = package and filter
   useEffect(() => {
     dispatch(fetchNews(section));
@@ -70,6 +72,7 @@ function GreenPack() {
                     placeholder="Search City/nation"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    className={currentTheme ? "darkTheme" : "bg-white"}
                   />
                   <>
                   <Button onClick={handleSearch} className="mx-3" >Search</Button>  
@@ -81,24 +84,30 @@ function GreenPack() {
               
               )}
             </Col>
-          </Row>
-          <Row className="my-3">
-            <h2>News</h2>
-          </Row>
-          <Row className="my-5">
-        {filteredNews.length === 0  ? (
-              <Error section={"food"} />
-            ) : (
-              <>
-               <NewsList news={currentItems} section={section} />
-                <PaginationComponent
-                  currentPage={currentPage}
-                  itemsPerPage={itemsPerPage}
-                  totalItems={filteredNews.length}
-                  onPageChange={paginate}
-                />
-              </>
+            </Row>
+            {searchMode ? null : (
+            <Row className="my-3">
+              <h2>News</h2>
+            </Row>
             )}
+          <Row className="my-5">
+          {searchMode ? null : (
+            <Row className="my-5">
+              {filteredNews.length === 0  ? (
+                <Error section={"activity"} />
+              ) : (
+                <>
+                  <NewsList news={currentItems} section={section} />
+                  <PaginationComponent
+                    currentPage={currentPage}
+                    itemsPerPage={itemsPerPage}
+                    totalItems={filteredNews.length}
+                    onPageChange={paginate}
+                  />
+                </>
+              )}
+            </Row>
+          )}
           </Row>
         </>
       )}

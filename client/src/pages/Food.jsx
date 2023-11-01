@@ -15,12 +15,14 @@ import Button from "react-bootstrap/Button"
 function Food() {
   const [filteredNews, setFilteredNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
+  const [itemsPerPage] = useState(15);
   const [searchMode, setSearchMode] = useState(false); 
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const section = "food";
+  // theme
+  const currentTheme = useSelector((state) => state.theme);
    // call the data based on section = activity and filter
   useEffect(() => {
     dispatch(fetchNews(section));
@@ -71,6 +73,7 @@ function Food() {
                     placeholder="Search City/nation"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    className={currentTheme ? "darkTheme" : "bg-white"}
                   />
                   <>
                   <Button onClick={handleSearch} className="mx-3" >Search</Button>  
@@ -83,23 +86,29 @@ function Food() {
               )}
             </Col>
           </Row>
-          <Row className="my-3">
-            <h2>News</h2>
-          </Row>
-          <Row className="my-5">
-        {filteredNews.length === 0  ? (
-              <Error section={"food"} />
-            ) : (
-              <>
-               <List news={currentItems} section={section} />
-                <PaginationComponent
-                  currentPage={currentPage}
-                  itemsPerPage={itemsPerPage}
-                  totalItems={filteredNews.length}
-                  onPageChange={paginate}
-                />
-              </>
+          {searchMode ? null : (
+            <Row className="my-3">
+              <h2>News</h2>
+            </Row>
             )}
+          <Row className="my-5">
+          {searchMode ? null : (
+            <Row className="my-5">
+              {filteredNews.length === 0  ? (
+                <Error section={"activity"} />
+              ) : (
+                <>
+                  <List news={currentItems} section={section} />
+                  <PaginationComponent
+                    currentPage={currentPage}
+                    itemsPerPage={itemsPerPage}
+                    totalItems={filteredNews.length}
+                    onPageChange={paginate}
+                  />
+                </>
+              )}
+            </Row>
+          )}
           </Row>
         </>
       )}
