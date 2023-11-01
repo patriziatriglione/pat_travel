@@ -42,6 +42,7 @@ function Food() {
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredNews.slice(indexOfFirstItem, indexOfLastItem);
   console.log(indexOfFirstItem)
+  console.log(indexOfLastItem)
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
