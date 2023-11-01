@@ -24,14 +24,11 @@ function Food() {
     dispatch(fetchNews(section));
   }, [dispatch, section]);
 
-  useEffect(() => {
-    setFilteredNews(news.data);
-  }, [news.data]);
 
   // Funzione per gestire la ricerca
   const handleSearch = () => {
     if (searchQuery === "") {
-      setFilteredNews([news.data]);
+      setFilteredNews([]);
     } else {
       const filteredData = news.data.filter((item) =>
         item.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
