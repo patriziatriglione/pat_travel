@@ -4,11 +4,15 @@ import PropTypes from "prop-types";
 
 function SearchCityNation({ onSearch }) {
   const currentTheme = useSelector((state) => state.theme);
-  // search for the entered value
-  const handleSearchChange = (e) => {
-    const query = e.target.value;
-    onSearch(query);
+
+  // Aggiungi una funzione per gestire la pressione del tasto "Invio"
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      // Esegui la ricerca quando il tasto "Invio" viene premuto
+      onSearch(e.target.value);
+    }
   };
+
   return (
     <Form>
       <Form.Control
@@ -16,17 +20,16 @@ function SearchCityNation({ onSearch }) {
         placeholder="Search city/country"
         className={`mt-5 ${currentTheme ? "back_opacity" : "bg-white"}`}
         aria-label="Search"
-        onChange={handleSearchChange}
+        onKeyPress={handleKeyPress} // Ascolta l'evento di pressione del tasto
         name="search"
       />
     </Form>
   );
 }
+
 SearchCityNation.propTypes = {
   onSearch: PropTypes.func.isRequired,
 };
 
 export default SearchCityNation;
-
-
 

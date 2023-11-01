@@ -10,11 +10,11 @@ const { verifyUser } = require("../utilis/verifyToken");
 
 // Router Order
 const router = express.Router();
-router.get("/", verifyUser, getAllOrder);
-router.get("/:id", verifyUser, getOrderById);
+router.get("/", getAllOrder);
+router.get("/:id", getOrderById);
 router.post("/", insertOrder);
-router.delete("/:id", verifyUser, deleteOrder);
-router.patch("/:id", verifyUser, updateOrder);
+router.delete("/:id", deleteOrder);
+router.patch("/:id", updateOrder);
 
 
 module.exports = router;
