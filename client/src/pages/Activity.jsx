@@ -46,8 +46,11 @@ function Activity() {
     setSearchMode(true);
     setFilteredNews([]);
   };
-   // Pagination
-   const paginate = (pageNumber) => {
+  // items to display on the current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredNews.slice(indexOfFirstItem, indexOfLastItem);
+  const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
   return (
@@ -62,7 +65,7 @@ function Activity() {
           <Row className="my-5 d-flex justify-content-center">
             <Col sm={3}>
               {searchMode ? (
-                <div>
+                <div className="my-5">
                   <input
                     type="text"
                     placeholder="Search City/nation"
@@ -75,7 +78,7 @@ function Activity() {
                   </>
                 </div>
               ) : (
-                <Button onClick={activateSearchMode} className="my-3">Search City/Nation</Button>
+                <Button onClick={activateSearchMode} className="my-5">Search City/Nation</Button>
               )}
             </Col>
           </Row>
@@ -87,7 +90,7 @@ function Activity() {
               <Error section={"activity"} />
             ) : (
               <>
-                <List news={filteredNews} section={section} />
+                <List news={currentItems} section={section} />
                 <PaginationComponent
                   currentPage={currentPage}
                   itemsPerPage={itemsPerPage}

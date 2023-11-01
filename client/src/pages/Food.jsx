@@ -8,19 +8,17 @@ import List from "./components/List";
 import Loading from "./components/Loading";
 import Error from "./components/Error";
 import Col from "react-bootstrap/Col";
-import PaginationComponent from "./components/Pagination";
 import Message from './components/MessageSearch';
 import Button from "react-bootstrap/Button"
 
 function Food() {
   const [filteredNews, setFilteredNews] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10);
   const [searchMode, setSearchMode] = useState(false); 
   const [searchQuery, setSearchQuery] = useState('');
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const section = "food";
+   // call the data based on section = activity and filter
   useEffect(() => {
     dispatch(fetchNews(section));
   }, [dispatch, section]);
@@ -39,16 +37,11 @@ function Food() {
       setFilteredNews(filteredData);
       setSearchMode(false); 
     }
-    setCurrentPage(1);
   };
   // Search button
   const activateSearchMode = () => {
     setSearchMode(true);
     setFilteredNews([]);
-  };
-  // Pagination
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
   };
   return (
     <>
@@ -62,7 +55,7 @@ function Food() {
           <Row className="my-5 d-flex justify-content-center">
             <Col sm={3}>
               {searchMode ? (
-                <div>
+                <div className='my-5'>
                   <input
                     type="text"
                     placeholder="Search City/nation"
@@ -75,7 +68,7 @@ function Food() {
                   </>
                 </div>
               ) : (
-                <Button onClick={activateSearchMode} className="my-3">Search City/Nation</Button>
+                <Button onClick={activateSearchMode} className="my-5">Search City/Nation</Button>
               
               )}
             </Col>
@@ -89,12 +82,6 @@ function Food() {
             ) : (
               <>
                 <List news={filteredNews} section={section} />
-                <PaginationComponent
-                  currentPage={currentPage}
-                  itemsPerPage={itemsPerPage}
-                  totalItems={filteredNews.length}
-                  onPageChange={paginate}
-                />
               </>
             )}
           </Row>
