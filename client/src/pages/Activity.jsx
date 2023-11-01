@@ -73,7 +73,7 @@ function Activity() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   <>
-                  <Button onClick={handleSearch} className="ml-3" >Search</Button>  
+                  <Button onClick={handleSearch} className="mx-3" >Search</Button>  
                   <Message />
                   </>
                 </div>
@@ -82,11 +82,13 @@ function Activity() {
               )}
             </Col>
           </Row>
-          <Row className="my-3">
-            <h2>News</h2>
-          </Row>
+          {searchMode ? null : (
+            <Row className="my-3">
+              <h2>News</h2>
+            </Row>
+            )}
           <Row className="my-5">
-        {filteredNews.length === 0  ? (
+        {filteredNews.length === 0 && searchMode === null  ? (
               <Error section={"activity"} />
             ) : (
               <>
