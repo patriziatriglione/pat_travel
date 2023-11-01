@@ -16,6 +16,8 @@ function FromCheck({ price, city, packNumber, animals, rental, adultsNumber, chi
   const [animal, setAnimal] = useState(false);
   const [rentalService, setRentalService] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
+  // theme
+  const currentTheme = useSelector((state) => state.theme);
   // User data
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
@@ -97,11 +99,11 @@ function FromCheck({ price, city, packNumber, animals, rental, adultsNumber, chi
         <Row>
           <Form.Group as={Col} className='mt-3'>
             <Form.Label>Check-In</Form.Label>
-            <Form.Control type='date' onChange={(e) => setCheckIn(e.target.value)} />
+            <Form.Control type='date' onChange={(e) => setCheckIn(e.target.value)} className={currentTheme ? "darkTheme" : "bg-white"} />
           </Form.Group>
           <Form.Group as={Col} className='mt-3'>
             <Form.Label>Check-Out</Form.Label>
-            <Form.Control type='date' onChange={(e) => setCheckOut(e.target.value)} />
+            <Form.Control type='date' onChange={(e) => setCheckOut(e.target.value)} className={currentTheme ? "darkTheme" : "bg-white"} />
           </Form.Group>
         </Row>
         <Row className='flex justify-content-center'>
