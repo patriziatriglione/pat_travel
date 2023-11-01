@@ -1,12 +1,12 @@
+import { useState } from 'react';
 import Header from "./components/Header";
 import Row from "react-bootstrap/Row";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { fetchNews } from "../features/newsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import List from "./components/List";
 import Loading from "./components/Loading";
 import Error from "./components/Error";
-import SearchCityNation from "./components/Search";
 import Col from "react-bootstrap/Col";
 import PaginationComponent from "./components/Pagination";
 
@@ -14,39 +14,41 @@ function Food() {
   const [filteredNews, setFilteredNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
+  const [searchMode, setSearchMode] = useState(false); // Stato per gestire la modalità di ricerca
+  const [searchQuery, setSearchQuery] = useState(''); // Stato per la query di ricerca
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const section = "food";
-  // call the data based on section = food and filter
+
   useEffect(() => {
     dispatch(fetchNews(section));
   }, [dispatch, section]);
-  useEffect(() => {
-    setFilteredNews(news.data);
-  }, [news.data]);
-  // data with or without the filter
-  const handleSearch = (query) => {
-    if (query === "") {
+
+  // Funzione per gestire la ricerca
+  const handleSearch = () => {
+    if (searchQuery === "") {
       setFilteredNews([]);
     } else {
       const filteredData = news.data.filter((item) =>
-        item.city.toLowerCase().includes(query.toLowerCase()) ||
-        item.nation.toLowerCase().includes(query.toLowerCase())
+        item.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.nation.toLowerCase().includes(searchQuery.toLowerCase())
       );
       setFilteredNews(filteredData);
+      setSearchMode(false); // Nasconde la barra di ricerca
     }
     setCurrentPage(1);
   };
-  
-  
-  // items to display on the current page
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = filteredNews.slice(indexOfFirstItem, indexOfLastItem);
-  console.log(currentItems)
+
+  // Funzione per attivare la modalità di ricerca
+  const activateSearchMode = () => {
+    setSearchMode(true);
+  };
+
+  // Funzione per gestire la paginazione
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
   return (
     <>
       <Row>
@@ -58,7 +60,19 @@ function Food() {
         <>
           <Row className="my-5 d-flex justify-content-center">
             <Col sm={3}>
-              <SearchCityNation section={section} onSearch={handleSearch} />
+              {searchMode ? (
+                <div>
+                  <input
+                    type="text"
+                    placeholder="Cerca città/nazione"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  <button onClick={handleSearch}>Cerca</button>
+                </div>
+              ) : (
+                <button onClick={activateSearchMode}>Cerca città/nazione</button>
+              )}
             </Col>
           </Row>
           <Row className="my-3">
@@ -69,7 +83,7 @@ function Food() {
               <Error section={"food"} />
             ) : (
               <>
-                <List news={currentItems} section={section} />
+                <List news={filteredNews} section={section} />
                 <PaginationComponent
                   currentPage={currentPage}
                   itemsPerPage={itemsPerPage}
@@ -86,3 +100,4 @@ function Food() {
 }
 
 export default Food;
+
