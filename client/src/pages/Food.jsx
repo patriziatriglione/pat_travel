@@ -34,7 +34,6 @@ function Food() {
         item.nation.toLowerCase().includes(query.toLowerCase())
       );
       setFilteredNews(filteredData);
-      console.log(filteredData);
     }
     setCurrentPage(1);
   };
@@ -42,6 +41,7 @@ function Food() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredNews.slice(indexOfFirstItem, indexOfLastItem);
+  console.log(currentItems)
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
