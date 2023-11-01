@@ -81,7 +81,7 @@ function Food() {
             <h2>News</h2>
           </Row>
           <Row className="my-5">
-        {filteredNews.length === 0 && setSearchMode(false) ? (
+        {filteredNews.length === 0 && setSearchMode === false ? (
               <Error section={"food"} />
             ) : (
               <>
