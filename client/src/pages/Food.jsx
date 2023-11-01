@@ -27,7 +27,7 @@ function Food() {
   // data with or without the filter
   const handleSearch = (query) => {
     if (query === "") {
-      setFilteredNews(news.data.slice(0, itemsPerPage));
+      setFilteredNews([]);
     } else {
       const filteredData = news.data.filter((item) =>
         item.city.toLowerCase().includes(query.toLowerCase()) ||
@@ -37,6 +37,7 @@ function Food() {
     }
     setCurrentPage(1);
   };
+  
   
   // items to display on the current page
   const indexOfLastItem = currentPage * itemsPerPage;
