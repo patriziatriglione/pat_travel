@@ -27,7 +27,7 @@ function Food() {
   // Funzione per gestire la ricerca
   const handleSearch = () => {
     if (searchQuery === "") {
-      setFilteredNews([]);
+      setFilteredNews(news.data);
     } else {
       const filteredData = news.data.filter((item) =>
         item.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -42,6 +42,7 @@ function Food() {
   // Funzione per attivare la modalità di ricerca
   const activateSearchMode = () => {
     setSearchMode(true);
+    setFilteredNews([]);
   };
 
   // Funzione per gestire la paginazione
