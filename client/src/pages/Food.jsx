@@ -9,6 +9,7 @@ import Loading from "./components/Loading";
 import Error from "./components/Error";
 import Col from "react-bootstrap/Col";
 import PaginationComponent from "./components/Pagination";
+import Message from './components/MessageSearch';
 
 function Food() {
   const [filteredNews, setFilteredNews] = useState([]);
@@ -76,7 +77,10 @@ function Food() {
                   <button onClick={handleSearch}>Cerca</button>
                 </div>
               ) : (
+                <>
                 <button onClick={activateSearchMode}>Cerca città/nazione</button>
+                <Message />
+                </>
               )}
             </Col>
           </Row>
