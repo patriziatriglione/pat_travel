@@ -72,7 +72,7 @@ function GreenPack() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   <>
-                  <Button onClick={handleSearch} className="ml-3" >Search</Button>  
+                  <Button onClick={handleSearch} className="mx-3" >Search</Button>  
                   <Message />
                   </>
                 </div>

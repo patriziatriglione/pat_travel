@@ -20,6 +20,8 @@ function Activity() {
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const section = "activity";
+  // theme
+  const currentTheme = useSelector((state) => state.theme);
   // call the data based on section = activity and filter
   useEffect(() => {
     dispatch(fetchNews(section));
@@ -71,6 +73,7 @@ function Activity() {
                     placeholder="Search City/nation"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    className={currentTheme ? "darkTheme" : "bg-white"}
                   />
                   <>
                   <Button onClick={handleSearch} className="mx-3" >Search</Button>  
@@ -88,19 +91,23 @@ function Activity() {
             </Row>
             )}
           <Row className="my-5">
-        {filteredNews.length === 0 && searchMode === null  ? (
-              <Error section={"activity"} />
-            ) : (
-              <>
-                <List news={currentItems} section={section} />
-                <PaginationComponent
-                  currentPage={currentPage}
-                  itemsPerPage={itemsPerPage}
-                  totalItems={filteredNews.length}
-                  onPageChange={paginate}
-                />
-              </>
-            )}
+          {searchMode ? null : (
+            <Row className="my-5">
+              {filteredNews.length === 0  ? (
+                <Error section={"activity"} />
+              ) : (
+                <>
+                  <List news={currentItems} section={section} />
+                  <PaginationComponent
+                    currentPage={currentPage}
+                    itemsPerPage={itemsPerPage}
+                    totalItems={filteredNews.length}
+                    onPageChange={paginate}
+                  />
+                </>
+              )}
+            </Row>
+          )}
           </Row>
         </>
       )}
