@@ -74,13 +74,14 @@ function Food() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
-                  <button onClick={handleSearch}>Cerca</button>
+                  <>
+                  <button onClick={handleSearch}>Cerca</button>  
+                  <Message />
+                  </>
                 </div>
               ) : (
-                <>
                 <button onClick={activateSearchMode}>Cerca città/nazione</button>
-                <Message />
-                </>
+              
               )}
             </Col>
           </Row>
