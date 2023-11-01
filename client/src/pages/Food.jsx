@@ -23,6 +23,7 @@ function Food() {
   }, [dispatch, section]);
   useEffect(() => {
     setFilteredNews(news.data);
+    console.log(setFilteredNews)
   }, [news.data]);
   // data with or without the filter
   const handleSearch = (query) => {
