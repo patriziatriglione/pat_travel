@@ -16,6 +16,7 @@ function Food() {
   const [itemsPerPage] = useState(10);
   const [searchMode, setSearchMode] = useState(false); // Stato per gestire la modalità di ricerca
   const [searchQuery, setSearchQuery] = useState(''); // Stato per la query di ricerca
+  const [searchPlaceholder, setSearchPlaceholder] = useState('Cerca città/nazione'); // Stato per il placeholder della barra di ricerca
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
   const section = "food";
@@ -27,7 +28,8 @@ function Food() {
   // Funzione per gestire la ricerca
   const handleSearch = () => {
     if (searchQuery === "") {
-      setFilteredNews([news.data]);
+      setFilteredNews([]);
+      setSearchPlaceholder('Cerca la tua città/nazione');
     } else {
       const filteredData = news.data.filter((item) =>
         item.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -35,6 +37,7 @@ function Food() {
       );
       setFilteredNews(filteredData);
       setSearchMode(false); // Nasconde la barra di ricerca
+      setSearchPlaceholder('Cerca città/nazione');
     }
     setCurrentPage(1);
   };
@@ -43,6 +46,7 @@ function Food() {
   const activateSearchMode = () => {
     setSearchMode(true);
     setFilteredNews([]);
+    setSearchPlaceholder('Cerca città/nazione');
   };
 
   // Funzione per gestire la paginazione
@@ -65,14 +69,14 @@ function Food() {
                 <div>
                   <input
                     type="text"
-                    placeholder="Cerca città/nazione"
+                    placeholder={searchPlaceholder}
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   <button onClick={handleSearch}>Cerca</button>
                 </div>
               ) : (
-                <button onClick={activateSearchMode}>Cerca città/nazione</button>
+                <button onClick={activateSearchMode}>{searchPlaceholder}</button>
               )}
             </Col>
           </Row>
@@ -101,4 +105,5 @@ function Food() {
 }
 
 export default Food;
+
 
